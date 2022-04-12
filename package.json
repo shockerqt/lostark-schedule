@@ -1,0 +1,45 @@
+{
+  "name": "lostark-schedule",
+  "version": "1.0.0",
+  "description": "A daily schedule for Lost Ark",
+  "main": "index.js",
+  "scripts": {
+    "build": "NODE_ENV=production webpack --config webpack.production.js",
+    "start": "webpack serve --open --config webpack.development.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shockerqt/lostark-schedule.git"
+  },
+  "author": "shocker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shockerqt/lostark-schedule/issues"
+  },
+  "homepage": "https://github.com/shockerqt/lostark-schedule#readme",
+  "devDependencies": {
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@types/react-router-dom": "latest",
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
+    "css-loader": "latest",
+    "eslint": "latest",
+    "html-webpack-plugin": "latest",
+    "node-sass": "latest",
+    "sass": "latest",
+    "sass-loader": "latest",
+    "style-loader": "latest",
+    "ts-loader": "latest",
+    "typescript": "latest",
+    "webpack": "latest",
+    "webpack-cli": "latest",
+    "webpack-dev-server": "latest"
+  },
+  "dependencies": {
+    "react": "latest",
+    "react-dom": "latest",
+    "react-router-dom": "latest",
+    "web-vitals": "latest"
+  }
+}

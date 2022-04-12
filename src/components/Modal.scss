@@ -1,0 +1,46 @@
+.modal-wrapper {
+  position: absolute;
+  background-color: rgba(158, 158, 158, 0.272);
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding-bottom: 200px;
+  opacity: 1;
+  transition: 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+  &.modal-hidden {
+    opacity: 0;
+  }
+}
+
+.modal-content {
+  background-color: rgb(29, 29, 29);
+  border-radius: 8px;
+  width: 600px;
+  height: 500px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 28px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 28px;
+
+  h1.modal-title {
+    font-family: 'IM Fell Double Pica SC', serif;
+    font-weight: 400;
+    color: white;
+  }
+
+  .modal-close {
+    height: 36px;
+    fill: white;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,110 @@
+.card {
+  position: relative;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 350px;
+  padding: 32px 18px;
+  color: white;
+
+  h4, h5, small {
+    font-weight: normal;
+  }
+}
+
+.card-settings-button {
+  position: absolute;
+  top: 28px;
+  right: 32px;
+  cursor: pointer;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  .card-classname {
+    color: #999;
+    font-size: 14px;
+  }
+
+  .card-nick {
+    font-size: 18px;
+  }
+}
+
+.card-body {
+  margin-top: 18px;
+
+  .card-task {
+    margin: 18px 0;
+  }
+
+  .card-task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 6px;
+  }
+
+  .card-task-title {
+    font-size: 16px;
+  }
+
+  small.card-task-reset {
+    text-decoration: underline;
+    color: #999;
+    cursor: pointer;
+  }
+
+  .card-attempts {
+    display: flex;
+    height: 16px;
+    gap: 10px;
+    margin-bottom: 6px;
+
+    div {
+      height: 100%;
+      width: 100%;
+      cursor: pointer;
+    }
+    
+    .card-attempt {
+      background-color: #575757;
+    }
+    
+    .card-attempt-hover {
+      border: 1px solid white;
+    }
+
+    .card-attempt-done {
+      background-color: #459638;
+    }
+  }
+
+  .card-rest {
+    display: flex;
+    height: 12px;
+    gap: 10px;
+
+    div {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      gap: 2px;
+
+      div {
+        height: 100%;
+        width: 100%;
+      }
+
+      .card-rest {
+        background-color: #575757;
+      }
+
+      .card-rest-done {
+        background-color: #bcbf35;
+      }
+    }
+  }
+}
