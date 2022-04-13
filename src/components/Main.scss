@@ -1,3 +1,14 @@
+header {
+  color: white;
+  padding: 50px;
+  
+  h1 {
+    font-family: 'IM Fell Double Pica SC', serif;
+    font-size: 36px;
+    font-weight: normal;
+  }
+}
+
 main {
   display: grid;
   justify-items: center;

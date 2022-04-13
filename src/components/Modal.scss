@@ -1,3 +1,5 @@
+$transition-speed: 0.1s;
+
 .modal-wrapper {
   position: absolute;
   background-color: rgba(158, 158, 158, 0.272);
@@ -9,11 +11,17 @@
   display: grid;
   place-items: center;
   padding-bottom: 200px;
-  opacity: 1;
-  transition: 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all $transition-speed ease-in;
 
   &.modal-hidden {
-    opacity: 0;
+    background-color: transparent;
+    transition: all $transition-speed ease-out;
+
+    .modal-content {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: all $transition-speed ease-out;
+    }
   }
 }
 
@@ -24,6 +32,7 @@
   height: 500px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   padding: 28px;
+  transition: all $transition-speed ease-in;
 }
 
 .modal-header {

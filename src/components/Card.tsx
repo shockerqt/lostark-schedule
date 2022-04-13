@@ -4,7 +4,7 @@ import CharacterIcons from './ClassIcons';
 import { SettingsIcon } from './icons';
 import { Character } from './Main';
 
-const AttemptsBar = ({ done, handleClick }: { done: number, handleClick: (value: number) => void }) => {
+const AttemptsBar = ({ done, handleClick, max }: { done: number, max: number, handleClick: (value: number) => void }) => {
   const [hover, setHover] = useState(0);
 
   const handleHover = (bar: number) => {
@@ -23,10 +23,16 @@ const AttemptsBar = ({ done, handleClick }: { done: number, handleClick: (value:
         onClick={() => handleClick(1)}
       />
       <div
-        className={`${done === 2 ? 'card-attempt-done' : 'card-attempt'}${hover === 2 ? ' card-attempt-hover' : ''}`}
+        className={`${done >= 2 ? 'card-attempt-done' : 'card-attempt'}${hover >= 2 ? ' card-attempt-hover' : ''}`}
         onMouseEnter={() => handleHover(2)}
         onClick={() => handleClick(2)}
       />
+      {max > 2 &&
+        <div
+          className={`${done >= 3 ? 'card-attempt-done' : 'card-attempt'}${hover >= 3 ? ' card-attempt-hover' : ''}`}
+          onMouseEnter={() => handleHover(3)}
+          onClick={() => handleClick(3)}
+        />}
     </div>
   );
 };
@@ -72,15 +78,25 @@ const ClassesInfo = {
   },
 };
 
-const Card = ({ char, setChar }: { char: Character, setChar: (value: Character) => void }) => {
-  const classInfo = ClassesInfo[char.class];
+const Card = ({ character, setCharacter }: { character: Character, setCharacter: (value: Character) => void }) => {
+  const classInfo = ClassesInfo[character.class];
 
   const handleAttemptClick = (key: string, value: number) => {
-    setChar({
-      ...char,
+    let restKey = 'unasRest';
+    let restValue = Math.max(character.initialUnasRest - 2 * value, character.initialUnasRest % 2);
+    if (key === 'chaosDone') {
+      restKey = 'chaosRest';
+      restValue = Math.max(character.initialChaosRest - 2 * value, character.initialChaosRest % 2);
+    }
+    if (key === 'guardianDone') {
+      restKey = 'guardianRest';
+      restValue = Math.max(character.initialGuardianRest - 2 * value, character.initialGuardianRest % 2);
+    }
+    setCharacter({
+      ...character,
       [key]: value,
+      [restKey]: restValue,
     });
-    console.log(key, value);
   };
 
   return (
@@ -91,8 +107,8 @@ const Card = ({ char, setChar }: { char: Character, setChar: (value: Character) 
       <div className="card-header">
         {classInfo.icon}
         <div>
-          <small className="card-classname">{`${classInfo.name} - ${char.ilvl}`}</small>
-          <h4 className="card-nick">{char.nick}</h4>
+          <small className="card-classname">{`${classInfo.name} - ${character.ilvl}`}</small>
+          <h4 className="card-nick">{character.nick}</h4>
         </div>
       </div>
       <div className="card-body">
@@ -101,15 +117,16 @@ const Card = ({ char, setChar }: { char: Character, setChar: (value: Character) 
             <h5 className="card-task-title">Chaos Dungeon</h5>
             <small
               className="card-task-reset"
-              onClick={() => handleAttemptClick('chaos', 0)}>
+              onClick={() => handleAttemptClick('chaosDone', 0)}>
                 Reset
             </small>
           </div>
           <AttemptsBar
-            done={char.chaos}
-            handleClick={(value: number) => handleAttemptClick('chaos', value)}
+            done={character.chaosDone}
+            max={2}
+            handleClick={(value: number) => handleAttemptClick('chaosDone', value)}
           />
-          <RestBar done={char.chaosRest} />
+          <RestBar done={character.chaosRest} />
         </div>
 
         <div className="card-task">
@@ -117,15 +134,16 @@ const Card = ({ char, setChar }: { char: Character, setChar: (value: Character) 
             <h5 className="card-task-title">Guardian Raid</h5>
             <small
               className="card-task-reset"
-              onClick={() => handleAttemptClick('guardian', 0)}>
+              onClick={() => handleAttemptClick('guardianDone', 0)}>
                 Reset
             </small>
           </div>
           <AttemptsBar
-            done={char.guardian}
-            handleClick={(value: number) => handleAttemptClick('guardian', value)}
+            done={character.guardianDone}
+            max={2}
+            handleClick={(value: number) => handleAttemptClick('guardianDone', value)}
           />
-          <RestBar done={char.guardianRest} />
+          <RestBar done={character.guardianRest} />
         </div>
 
         <div className="card-task">
@@ -133,15 +151,16 @@ const Card = ({ char, setChar }: { char: Character, setChar: (value: Character) 
             <h5 className="card-task-title">Una's Tasks</h5>
             <small
               className="card-task-reset"
-              onClick={() => handleAttemptClick('unas', 0)}>
+              onClick={() => handleAttemptClick('unasDone', 0)}>
                 Reset
             </small>
           </div>
           <AttemptsBar
-            done={char.unas}
-            handleClick={(value: number) => handleAttemptClick('unas', value)}
+            done={character.unasDone}
+            max={3}
+            handleClick={(value: number) => handleAttemptClick('unasDone', value)}
           />
-          <RestBar done={char.unasRest} />
+          <RestBar done={character.unasRest} />
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import { CloseIcon } from './icons';
 import './Modal.scss';
 
 interface ModalProps {
-  modal: { content: JSX.Element, title: string } | null;
+  modal: { Content: (props: { closeModal: () => void }) => JSX.Element, title: string } | null;
   closeModal: () => void;
 }
 
@@ -28,8 +28,10 @@ const Modal = ({ modal, closeModal }: ModalProps) => {
           <h1 className="modal-title">{modal.title}</h1>
           <CloseIcon onClick={animateClose} className="modal-close" />
         </div>
-
-        {modal.content}
+        <div>
+          <modal.Content closeModal={animateClose} />
+          asd
+        </div>
       </div>
     </div>
   );
