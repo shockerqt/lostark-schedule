@@ -8,16 +8,3 @@ header {
     font-weight: normal;
   }
 }
-
-main {
-  display: grid;
-  justify-items: center;
-}
-
-.cards {
-  width: 960px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  padding: 30px;
-}

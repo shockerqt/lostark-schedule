@@ -101,17 +101,26 @@ const Card = ({ character, setCharacter }: { character: Character, setCharacter:
 
   return (
     <div className="card">
-      <div className="card-settings-button">
+      {/* <div className="card-settings-button">
         <SettingsIcon fill="white" height={24} />
-      </div>
+      </div> */}
       <div className="card-header">
-        {classInfo.icon}
-        <div>
-          <small className="card-classname">{`${classInfo.name} - ${character.ilvl}`}</small>
-          <h4 className="card-nick">{character.nick}</h4>
+        <div className="card-header-header">
+          {classInfo.icon}
+          <div>
+            <small className="card-classname">{`${classInfo.name} - ${character.ilvl}`}</small>
+            <h4 className="card-nick">{character.nick}</h4>
+          </div>
         </div>
       </div>
-      <div className="card-body">
+      <div className="card-quick-notes">
+        {/* <label htmlFor="card-quick-notes">Quick Notes</label> */}
+        <textarea id="card-quick-notes" aria-label="Quick notes" placeholder="Quick notes" />
+      </div>
+      <div className="card-center">
+        <h3 className="card-center-header">
+          Dailies
+        </h3>
         <div className="card-task">
           <div className="card-task-header">
             <h5 className="card-task-title">Chaos Dungeon</h5>
@@ -162,6 +171,11 @@ const Card = ({ character, setCharacter }: { character: Character, setCharacter:
           />
           <RestBar done={character.unasRest} />
         </div>
+      </div>
+      <div className="card-right">
+        <h3 className="card-right-header">
+          Weeklies
+        </h3>
       </div>
     </div>
   );
